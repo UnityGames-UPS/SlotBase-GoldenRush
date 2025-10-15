@@ -146,6 +146,12 @@ public class SlotBehaviour : MonoBehaviour
     private double currentBalance = 0;
     private double currentTotalBet = 0;
     private float SpinDelay = 0.2f;
+    private int[,] initialMatrix = new int[,]
+    {
+        {0, 10, 9, 9, 0},
+        {1, 9, 9, 9, 10},
+        {2, 10, 0, 10, 1}
+    };
 
     [SerializeField]
     Sprite[] TurboToggleSprites;
@@ -382,14 +388,35 @@ public class SlotBehaviour : MonoBehaviour
     //    }
     //}
 
-    internal void shuffleInitialMatrix()
+    // internal void shuffleInitialMatrix()
+    // {
+    //     for (int i = 0; i < Tempimages.Count; i++)
+    //     {
+    //         for (int j = 0; j < 3; j++)
+    //         {
+    //             int randomIndex = UnityEngine.Random.Range(0, myImages.Length);
+    //             Tempimages[i].slotImages[j].sprite = myImages[randomIndex];
+    //         }
+    //     }
+    // }
+    internal void InitializeMatrix()
     {
-        for (int i = 0; i < Tempimages.Count; i++)
+        for (int row = 0; row < initialMatrix.GetLength(0); row++)
         {
-            for (int j = 0; j < 3; j++)
+            for (int col = 0; col < initialMatrix.GetLength(1); col++)
             {
-                int randomIndex = UnityEngine.Random.Range(0, myImages.Length);
-                Tempimages[i].slotImages[j].sprite = myImages[randomIndex];
+                int val = initialMatrix[row, col];
+
+                Tempimages[col].slotImages[row].sprite = myImages[val];
+
+                ImageAnimation animScript = Tempimages[col].slotImages[row].GetComponent<ImageAnimation>();
+                if (animScript != null)
+                {
+                    PopulateAnimationSprites(animScript, val);
+
+                    animScript.StartAnimation();
+                    TempList.Add(animScript);
+                }
             }
         }
     }
@@ -708,7 +735,7 @@ public class SlotBehaviour : MonoBehaviour
 
     internal void CallCloseSocket()
     {
-       StartCoroutine(SocketManager.CloseSocket());
+        StartCoroutine(SocketManager.CloseSocket());
     }
 
     void ToggleButtonGrp(bool toggle)
@@ -857,7 +884,7 @@ public class SlotBehaviour : MonoBehaviour
         List<int> y_points = null;
         if (LineId.Count > 0)
         {
-          //  if (audioController) audioController.PlayWLAudio("win");
+            //  if (audioController) audioController.PlayWLAudio("win");
 
             for (int i = 0; i < LineId.Count; i++)
             {
