@@ -57,6 +57,8 @@ public class UIManager : MonoBehaviour
     [Header("Popus UI")]
     [SerializeField]
     private GameObject MainPopup_Object;
+    [SerializeField]
+    private GameObject WinMainPopup_Object;
 
     //[Header("About Popup")]
     //[SerializeField]
@@ -336,11 +338,11 @@ public class UIManager : MonoBehaviour
 
     private void StartPopupAnim(double amount)
     {
-        if (!MainPopup_Object.activeSelf)
+        if (!WinMainPopup_Object.activeSelf)
         {
             double initAmount = 0;
             if (WinPopup_Object) WinPopup_Object.SetActive(true);
-            if (MainPopup_Object) MainPopup_Object.SetActive(true);
+            if (WinMainPopup_Object) WinMainPopup_Object.SetActive(true);
 
             megawin_TweenOne = DOTween.To(() => initAmount, (val) => initAmount = val, amount, 1f).OnUpdate(() =>
             {
@@ -349,7 +351,7 @@ public class UIManager : MonoBehaviour
 
             megawin_TweenTwo = DOVirtual.DelayedCall(2f, () =>
             {
-                ClosePopup(WinPopup_Object);
+                CloseWinPopup(WinPopup_Object);
 
                 if (slotManager.WasAutoSpinOn || slotManager.IsAutoSpin)
                 {
@@ -556,6 +558,16 @@ public class UIManager : MonoBehaviour
         if (!DisconnectPopup_Object.activeSelf)
         {
             if (MainPopup_Object) MainPopup_Object.SetActive(false);
+        }
+    }
+
+        private void CloseWinPopup(GameObject Popup)
+    {
+        if (audioController) audioController.PlayButtonAudio();
+        if (Popup) Popup.SetActive(false);
+        if (!DisconnectPopup_Object.activeSelf)
+        {
+            if (WinMainPopup_Object) WinMainPopup_Object.SetActive(false);
         }
     }
 
