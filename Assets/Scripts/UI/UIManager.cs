@@ -318,7 +318,7 @@ public class UIManager : MonoBehaviour
 
     internal void PopulateWin(int value, double amount)
     {
-         if (audioController) audioController.PlayWLAudio("win");
+        if (audioController) audioController.PlayWLAudio("win");
         Debug.Log($" PopulateWin called with value: {value}, amount: {amount}");
         switch (value)
         {
@@ -390,29 +390,29 @@ public class UIManager : MonoBehaviour
         //else
         //{
         //    ClosePopup(ReconnectPopup_Object);
-            if (!isExit)
-            {
-                OpenPopup(DisconnectPopup_Object);
-            }
+        if (!isExit)
+        {
+            OpenPopup(DisconnectPopup_Object);
+        }
         //}
     }
-    
-    internal void CheckAndClosePopups()
-  {
-    if (ReconnectPopup_Object.activeInHierarchy)
-    {
-      ClosePopup(ReconnectPopup_Object);
-    }
-    if (DisconnectPopup_Object.activeInHierarchy)
-    {
-      ClosePopup(DisconnectPopup_Object);
-    }
-  }
 
-  internal void ReconnectionPopup()
-  {
-    OpenPopup(ReconnectPopup_Object);
-  }
+    internal void CheckAndClosePopups()
+    {
+        if (ReconnectPopup_Object.activeInHierarchy)
+        {
+            ClosePopup(ReconnectPopup_Object);
+        }
+        if (DisconnectPopup_Object.activeInHierarchy)
+        {
+            ClosePopup(DisconnectPopup_Object);
+        }
+    }
+
+    internal void ReconnectionPopup()
+    {
+        OpenPopup(ReconnectPopup_Object);
+    }
 
 
     private void disableMegaWinOnPress()
@@ -436,7 +436,7 @@ public class UIManager : MonoBehaviour
 
 
 
-    internal void InitialiseUIData( Paylines symbolsText)
+    internal void InitialiseUIData(Paylines symbolsText)
     {
         //if (Support_Button) Support_Button.onClick.RemoveAllListeners();
         //if (Support_Button) Support_Button.onClick.AddListener(delegate { UrlButtons(SupportUrl); });
@@ -457,15 +457,15 @@ public class UIManager : MonoBehaviour
             string text = null;
             if (paylines.symbols[i].multiplier[0] != 0)
             {
-                text += "5x - " + paylines.symbols[i].multiplier[0]+"x";
+                text += "5x - " + paylines.symbols[i].multiplier[0] + "x";
             }
             if (paylines.symbols[i].multiplier[1] != 0)
             {
-                text += "\n4x - " + paylines.symbols[i].multiplier[1]+"x";
+                text += "\n4x - " + paylines.symbols[i].multiplier[1] + "x";
             }
             if (paylines.symbols[i].multiplier[2] != 0)
             {
-                text += "\n3x - " + paylines.symbols[i].multiplier[2]+"x";
+                text += "\n3x - " + paylines.symbols[i].multiplier[2] + "x";
             }
             if (SymbolsText[i]) SymbolsText[i].text = text;
         }
@@ -546,6 +546,30 @@ public class UIManager : MonoBehaviour
 
     private void OpenPopup(GameObject Popup)
     {
+        if (Popup == LBPopup_Object)
+        {
+            if (PaytablePopup_Object.activeSelf) PaytablePopup_Object.SetActive(false);
+            if (SettingsPopup_Object.activeSelf) SettingsPopup_Object.SetActive(false);
+        }
+        if (Popup == DisconnectPopup_Object)
+        {
+            if (PaytablePopup_Object.activeSelf) PaytablePopup_Object.SetActive(false);
+            if (SettingsPopup_Object.activeSelf) SettingsPopup_Object.SetActive(false);
+            if (FreeSpinPopup_Object.activeSelf) FreeSpinPopup_Object.SetActive(false);
+            if (LBPopup_Object.activeSelf) LBPopup_Object.SetActive(false);
+        }
+        if (Popup == ReconnectPopup_Object)
+        {
+            if (PaytablePopup_Object.activeSelf) PaytablePopup_Object.SetActive(false);
+            if (SettingsPopup_Object.activeSelf) SettingsPopup_Object.SetActive(false);
+            if (FreeSpinPopup_Object.activeSelf) FreeSpinPopup_Object.SetActive(false);
+            if (LBPopup_Object.activeSelf) LBPopup_Object.SetActive(false);
+        }
+        if (Popup == FreeSpinPopup_Object)
+        {
+            if (PaytablePopup_Object.activeSelf) PaytablePopup_Object.SetActive(false);
+            if (SettingsPopup_Object.activeSelf) SettingsPopup_Object.SetActive(false);
+        }
         if (audioController) audioController.PlayButtonAudio();
         if (Popup) Popup.SetActive(true);
         if (MainPopup_Object) MainPopup_Object.SetActive(true);
@@ -561,7 +585,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-        private void CloseWinPopup(GameObject Popup)
+    private void CloseWinPopup(GameObject Popup)
     {
         if (audioController) audioController.PlayButtonAudio();
         if (Popup) Popup.SetActive(false);
