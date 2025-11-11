@@ -1,2 +1,2 @@
-# SlotBase-GoldenRush
+# GoldenRush
 Dev Branch
