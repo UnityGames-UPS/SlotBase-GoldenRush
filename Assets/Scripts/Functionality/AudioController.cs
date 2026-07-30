@@ -20,27 +20,35 @@ public class AudioController : MonoBehaviour
         audioSpin_button.clip = clips[clips.Length - 2];
     }
 
-    internal void CheckFocusFunction(bool focus, bool IsSpinning)
+    private bool isForceMuted = false;
+    private readonly Dictionary<AudioSource, bool> preFocusMuteState = new Dictionary<AudioSource, bool>();
+
+    private IEnumerable<AudioSource> AllSources()
     {
-        if (!focus)
+        yield return bg_adudio;
+        yield return audioPlayer_wl;
+        yield return audioPlayer_button;
+        yield return audioSpin_button;
+    }
+
+    // Focus-driven — called from BOTH the WebGL/JS OnFocusChanged path and OnApplicationFocus.
+    internal void SetMuteAll(bool forceMute)
+    {
+        if (forceMute == isForceMuted) return;
+        isForceMuted = forceMute;
+
+        foreach (var source in AllSources())
         {
-            bg_adudio.Pause();
-            audioPlayer_wl.Pause();
-            audioPlayer_button.Pause();
-        }
-        else
-        {
-            if (!bg_adudio.mute) bg_adudio.UnPause();
-            if (IsSpinning)
+            if (source == null) continue;
+            if (forceMute)
             {
-                if (!audioPlayer_wl.mute) audioPlayer_wl.UnPause();
+                preFocusMuteState[source] = source.mute;
+                source.mute = true;
             }
             else
             {
-                StopWLAaudio();
+                source.mute = preFocusMuteState.TryGetValue(source, out bool prevMuted) ? prevMuted : source.mute;
             }
-            if (!audioPlayer_button.mute) audioPlayer_button.UnPause();
-
         }
     }
 
@@ -105,19 +113,27 @@ public class AudioController : MonoBehaviour
         {
             case "bg":
                 bg_adudio.mute = toggle;
+                preFocusMuteState[bg_adudio] = toggle;
                 break;
             case "button":
                 audioPlayer_button.mute = toggle;
                 audioSpin_button.mute = toggle;
+                preFocusMuteState[audioPlayer_button] = toggle;
+                preFocusMuteState[audioSpin_button] = toggle;
                 break;
             case "wl":
                 audioPlayer_wl.mute = toggle;
+                preFocusMuteState[audioPlayer_wl] = toggle;
                 break;
             case "all":
                 audioPlayer_wl.mute = toggle;
                 bg_adudio.mute = toggle;
                 audioPlayer_button.mute = toggle;
                 audioSpin_button.mute = toggle;
+                preFocusMuteState[audioPlayer_wl] = toggle;
+                preFocusMuteState[bg_adudio] = toggle;
+                preFocusMuteState[audioPlayer_button] = toggle;
+                preFocusMuteState[audioSpin_button] = toggle;
                 break;
         }
     }

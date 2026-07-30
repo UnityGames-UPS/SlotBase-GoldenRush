@@ -181,6 +181,9 @@ public class UIManager : MonoBehaviour
     private SocketIOManager socketManager;
 
     [SerializeField]
+    private JSFunctCalls jsFunctCalls;
+
+    [SerializeField]
     private Button m_AwakeGameButton;
 
     private bool isMusic = true;
@@ -196,6 +199,15 @@ public class UIManager : MonoBehaviour
         //if (Loading_Object) Loading_Object.SetActive(true);
         //StartCoroutine(LoadingRoutine());
         SimulateClickByDefault();
+        if (jsFunctCalls != null) jsFunctCalls.RegisterVisibilityListener(gameObject.name);
+    }
+
+    public void OnFocusChanged(string value)
+    {
+        bool focused = value == "1";
+        Debug.Log("UNITY FOCUS CHANGED: " + value + " (focused: " + focused + ")");
+        if (audioController) audioController.SetMuteAll(!focused);
+        if (socketManager) socketManager.HandleFocusChange(focused);
     }
 
     private void SimulateClickByDefault()
