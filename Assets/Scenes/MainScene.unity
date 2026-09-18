@@ -9862,7 +9862,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Connection error
+  m_text: DISCONNECTED
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ebe981e99141f4e53bc5a71592cd1a6a, type: 2}
   m_sharedMaterial: {fileID: 1229094880769571107, guid: ebe981e99141f4e53bc5a71592cd1a6a, type: 2}
@@ -9912,7 +9912,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -13932,8 +13932,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.42, y: -4.28}
-  m_SizeDelta: {x: 533.61, y: 103.15}
+  m_AnchoredPosition: {x: 0, y: -49}
+  m_SizeDelta: {x: 567.19, y: 103.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1185349468
 MonoBehaviour:
@@ -13955,7 +13955,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Trying  to reconnect...
+  m_text: Trying  to reconnect....
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ebe981e99141f4e53bc5a71592cd1a6a, type: 2}
   m_sharedMaterial: {fileID: 1229094880769571107, guid: ebe981e99141f4e53bc5a71592cd1a6a, type: 2}
@@ -14005,7 +14005,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -15394,7 +15394,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Connecting..
+  m_text: CONNECTION LOST
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ebe981e99141f4e53bc5a71592cd1a6a, type: 2}
   m_sharedMaterial: {fileID: 1229094880769571107, guid: ebe981e99141f4e53bc5a71592cd1a6a, type: 2}
@@ -15444,7 +15444,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -15810,7 +15810,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -4.28}
-  m_SizeDelta: {x: 466.32, y: 103.15}
+  m_SizeDelta: {x: 562.35, y: 103.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1353401616
 MonoBehaviour:
@@ -15832,7 +15832,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Unable to connect to the server.
+  m_text: Please restart the game.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ebe981e99141f4e53bc5a71592cd1a6a, type: 2}
   m_sharedMaterial: {fileID: 1229094880769571107, guid: ebe981e99141f4e53bc5a71592cd1a6a, type: 2}
@@ -15882,7 +15882,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
